@@ -178,8 +178,10 @@ byte *bootimg_generate_hash(const boot_img *image)
 	if (image->dt.mtk_header)
 		SHA_update(&ctx, image->dt.mtk_header, sizeof(boot_mtk_hdr));
 #endif
+#ifndef ROCKCHIP_SUPPORT
 	SHA_update(&ctx, image->dt.data, image->dt.size);
 	SHA_update(&ctx, &image->hdr.dt_size, sizeof(image->hdr.dt_size));
+#endif
 
 	memcpy(hash, SHA_final(&ctx), SHA_DIGEST_SIZE);
 	return hash;
