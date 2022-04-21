@@ -15,4 +15,6 @@ endif()
 
 add_subdirectory (mincrypt)
 add_executable(bootimg libbootimg.c bootimg.c)
+add_executable(imageinfo libbootimg.c main.c)
+target_link_libraries (imageinfo LINK_PUBLIC mincrypt)
 target_link_libraries (bootimg LINK_PUBLIC mincrypt)
