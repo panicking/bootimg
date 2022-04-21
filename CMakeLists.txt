@@ -9,7 +9,8 @@ if (MSVC)
     add_compile_options(/W4 /WX)
 else()
     # lots of warnings and all warnings as errors
-    add_compile_options(-Wall -Wextra -pedantic)
+    add_compile_options(-Wall -Wpedantic -Wextra -std=gnu99 -Os -s -DNO_MTK_SUPPORT=1
+			-DROCKCHIP_SUPPORT=1)
 endif()
 
 add_subdirectory (mincrypt)
