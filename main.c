@@ -64,7 +64,7 @@ int main(const int argc, const char** argv)
 	boot_img *image = 0;
 
 	if (argc <= 1) {
-		printf("Not enough arguments!");
+		printf("Not enough arguments!\nUse imageinfo <android boot image file>\n");
 		return 0;
 	}
 
