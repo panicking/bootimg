@@ -39,23 +39,46 @@ static char *read_hash(const byte *hash)
 	return str;
 }
 
+void compare_hashes(char* info_hash, char* info_actual_hash)
+{
+
+	printf("Image Hash is %lu ",strlen(info_hash));
+
+	printf("Calculated Hash is %lu ",strlen(info_actual_hash));
+
+	if(strcmp(info_hash, info_actual_hash)==0)
+	{
+		printf("IMAGE and CALCULATED HASH are same\n");
+	}
+	else
+	{
+		printf("IMAGE and CALCULATED HASH are not same\n");
+	}
+
+}
+
 void print_boot_info(const boot_img *image)
 {
 	char *hash = read_hash((byte*)image->hdr.hash);
 	if (hash) {
 		printf("IMAGE HASH 0x%s\n", hash);
-		free(hash);
 	}
 
 	byte *bytes = bootimg_generate_hash(image);
+	char *hash2 = read_hash(bytes);
 	if (bytes) {
-		char *hash = read_hash(bytes);
-		if (hash) {
-			printf("CALCULATE HASH 0x%s\n", hash);
-			free(hash);
+
+		if (hash2) {
+			printf("CALCULATE HASH 0x%s\n", hash2);
 		}
-		free(bytes);
+		
 	}
+
+	compare_hashes(hash, hash2);
+
+	free(hash);
+	free(hash2);
+	free(bytes);
 }
 
 int main(const int argc, const char** argv)
