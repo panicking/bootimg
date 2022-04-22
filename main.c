@@ -63,8 +63,10 @@ int main(const int argc, const char** argv)
 	int ret = 0;
 	boot_img *image = 0;
 
-	if (argc < 2)
+	if (argc <= 1) {
 		printf("Not enough arguments!");
+		return 0;
+	}
 
         if (!(image = load_boot_image(argv[1])) && (ret = EINVAL))
                 printf("Fail to load boot image");
