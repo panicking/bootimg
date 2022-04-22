@@ -68,8 +68,11 @@ int main(const int argc, const char** argv)
 		return 0;
 	}
 
-        if (!(image = load_boot_image(argv[1])) && (ret = EINVAL))
-                printf("Fail to load boot image");
+	image = load_boot_image(argv[1]);
+	if (!image) {
+		printf("Fail to load boot image\n");
+		return 0;
+	}
 
 	print_boot_info(image);
 
